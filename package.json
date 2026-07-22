@@ -1,0 +1,28 @@
+{
+  "name": "gyansetu-adse",
+  "version": "5.2.0",
+  "private": true,
+  "description": "GyanSetu DPE + ADSE data preparation and Playwright data-seeding automation",
+  "scripts": {
+    "install:browsers": "playwright install chromium",
+    "prepare": "node src/dpe.js",
+    "import": "node src/importer.js",
+    "adse": "node src/orchestrator.js",
+    "validate": "node src/orchestrator.js --validate-only",
+    "stage": "node src/stage-imports.js",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:login": "playwright test tests/admin/login.spec.js",
+    "test:workflow": "playwright test tests/imports/workflow.spec.js",
+    "ci": "npm run test:workflow && playwright test tests/smoke/project.spec.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "playwright": "^1.49.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}
